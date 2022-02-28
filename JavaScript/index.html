@@ -1,81 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+    <!-- Normes utilisées -->
     <meta charset="UTF-8">
-    <title>Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Titre du site -->
+    <title>ProjetJS - WSI</title>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Icône du site -->
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+
+    <!-- Description -->
+    <meta name="description"
+        content="Projet JavaScript réalisé par Bastien FERRARI, Muriel PARAIRE et Antony PINEL dans le cadre du module M4103C">
+
+    <!-- Importation de la police -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Lien vers le CSS -->
+    <link rel="stylesheet" href="styles/style.css">
+
+    <!-- Liens vers le JS -->
+    <link rel="stylesheet" href="JavaScript/theme.js">
+
+
+    <!-- Lien vers FontAwesome pour les icônes -->
+    <script src="https://kit.fontawesome.com/77fa4d8648.js"></script>
 
 </head>
+
 <body>
 
-<nav>
-    <ul>
-        <li> Accueil </li>
-        <li> <a href = "documentation.html"> Documentation </a></li>
-    </ul>
-</nav>
+    <!-- Navbar -->
+    <div class="anchor" id="home"></div>
+    <nav>
+        <aside id="leftNav">
+            <a href="index.html">Accueil</a>
+            <hr>
+            <a href="documentation.html">Documentation</a>
+            <hr>
+            <a onclick="changeTheme()" class="nounder"><i class="far fa-lightbulb"></i></a>
+        </aside>
+        <div class="titles">
+            <a href="index.html">Accueil</a>
+            <a href="documentation.html">Documentation</a>
+            <a onclick="changeTheme()" class="nounder"><i class="far fa-lightbulb"></i></a>
+        </div>    
+    </div>
+    </nav>
+    <div class="space"></div>
+    <button class="install-button">Ajouter</button>
 
-<h1>Données des capteurs</h1>
-<p id="status">Pas connecté</p>
-<p> Affichage de la température : <span id="datas"> </span></p>
+    <h1>Données des capteurs</h1>
+    <p id="status">Pas connecté</p>
 
 
-<script>
-    var socket = new WebSocket("wss://ws.hothothot.dog:9502");
-    socket.onopen = function(event) {
-        console.log("Connexion établie");
 
-        //On indique sur notre page web que la connexion est établie
-        let label = document.getElementById("status");
-        label.innerHTML = "Connexion établie";
 
-        var intervaltemp = setInterval (function() {
-            //Envoi d'un message au serveur (obligatoire)
-            socket.send("coucou !");
-
-            // au retour...
-            socket.onmessage = function(event) {
-                var datas = document.getElementById("datas");
-                datas.innerHTML = event.data;
-            }
-        }, 5000)
-
-    }
-    socket.onerror = function(event) {
-        fetch('https://hothothot.dog/api/capteurs').then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(data);
+    <script>
+        var socket = new WebSocket("wss://ws.hothothot.dog:9502");
+        socket.onopen = function (event) {
+            console.log("Connexion établie");
 
             //On indique sur notre page web que la connexion est établie
             let label = document.getElementById("status");
             label.innerHTML = "Connexion établie";
 
-            var eventData = data;
 
-            var intervaltemp = setInterval (function() {
-                console.log(eventData.HotHotHot);
+            //Envoi d'un message au serveur (obligatoire)
+            socket.send("coucou !");
 
-                console.log(eventData.capteurs[0].type);
-                console.log(eventData.capteurs[0].Nom);
-                console.log(eventData.capteurs[0].Valeur);
-                console.log(eventData.capteurs[0].Timestamp);
+        }
 
-                console.log(eventData.capteurs[1].type);
-                console.log(eventData.capteurs[1].Nom);
-                console.log(eventData.capteurs[1].Valeur);
-                console.log(eventData.capteurs[1].Timestamp);
-            },5000)
-        }).catch(function (err) {
-            console.warn('Something went wrong.', err);
-        });
-    }
-</script>
+        // au retour...
+        socket.onmessage = function (event) {
+            console.log(event);
+        }
+
+        socket.onerror = function (event) {
+            var intervaltemp = setInterval(function () {
+                fetch('https://hothothot.dog/api/capteurs').then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    console.log(data);
+
+                    //On indique sur notre page web que la connexion est établie
+                    let label = document.getElementById("status");
+                    label.innerHTML = "Connexion établie";
+
+                    var eventData = data;
+
+
+                    console.log(eventData.HotHotHot);
+
+                    var capintype = document.getElementById("capintype");
+                    capintype.innerHTML = eventData.capteurs[0].type;
+                    var capinnom = document.getElementById("capinnom");
+                    capinnom.innerHTML = eventData.capteurs[0].Nom;
+                    var capinval = document.getElementById("capinval");
+                    capinval.innerHTML = eventData.capteurs[0].Valeur;
+
+                    var capouttype = document.getElementById("capouttype");
+                    capouttype.innerHTML = eventData.capteurs[1].type;
+                    var capoutnom = document.getElementById("capoutnom");
+                    capoutnom.innerHTML = eventData.capteurs[1].Nom;
+                    var capoutval = document.getElementById("capoutval");
+                    capoutval.innerHTML = eventData.capteurs[1].Valeur;
+
+                }, 5000)
+            }).catch(function (err) {
+                console.warn('Something went wrong.', err);
+            });
+        }
+
+    //<script defer src="JavaScript/main.js">
+    </script>
+
+    <div class="anchor" id="projects"></div>
+    <section class="projects" id="projects">
+            <div class="gauche">
+                <div class="gauchehaut">     
+                    <h2>Capteur intérieur</h2>
+                    <p>
+                    <ul>
+                        <li>Type : <span id="capintype"></span></li>
+                        <li>Nom : <span id="capinnom"></span></li>
+                        <li>Valeur : <span id="capinval"></span></li>
+                    </ul>
+                    </p></div>
+                <div class="gauchebas">    
+                    <h2>Capteur extérieur</h2>
+                    <p>
+                    <ul>
+                        <li>Type : <span id="capouttype"></span></li>
+                        <li>Nom : <span id="capoutnom"></span></li>
+                        <li>Valeur : <span id="capoutval"></span></li>
+                    </ul>
+                    </p></div>
+            </div>
+            <div class="droite"><a href="gfx-projects.html"><img alt=""></a></div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logoFooter"></div>
+        <p>Projet JS - HotHotHot<br>Bastien FERRARI - Muriel PARAIRE - Antony PINEL</p>
+    </footer>
 
 
 </body>

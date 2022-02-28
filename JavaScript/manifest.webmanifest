@@ -1,0 +1,9 @@
+{
+    "lang": "fr",
+    "name": "Projet JS Web",
+    "short_name": "PJSW",
+    "display": "standalone",
+    "description": "Un projet effectué en groupe par Bastien Ferrari, Muriel Paraire et Antony Pinel",
+    "start_url":"JavaScript/index.html",
+    "dir": "rtl"
+}
