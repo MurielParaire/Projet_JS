@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Normes utilisées -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titre du site -->
+    <title>ProjetJS - HotHotHot</title>
+    <!-- Icône du site -->
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <!-- Description -->
+    <meta name="description"
+        content="Projet JavaScript réalisé par Bastien FERRARI, Muriel PARAIRE et Antony PINEL dans le cadre du module M4103C">
+    <!-- Importation de la police -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    <!-- Lien vers le CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- Lien vers FontAwesome pour les icônes -->
+    <script src="https://kit.fontawesome.com/77fa4d8648.js"></script>
+    <!-- Lien vers le WebManifest -->
+    <link rel="manifest" href="manifest.webmanifest">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="anchor" id="home"></div>
+    <nav>
+        <!-- Menu hamburger responsive pour téléphone -->
+        <aside id="leftNav">
+            <a onclick="closeLeftNav()" class="title_nav" href="#accueil">Accueil</a>
+            <hr>
+            <a onclick="closeLeftNav()" class="title_nav" href="#documentation">Documentation</a>
+            <hr>
+            <a onclick="changeTheme()" class="nounder"><i class="light far fa-lightbulb"></i></a>
+        </aside>
+        <div class="menu">
+            <a onclick="openLeftNav()"><i class="fas fa-bars"></i></a>
+        </div>
+        <!-- Contenu de la navbar -->
+        <div class="titles">
+            <a class="title_nav" href="#accueil">Accueil</a>
+            <a class="title_nav" href="#documentation">Documentation</a>
+            <a onclick="changeTheme()" class="nounder"><i class="light far fa-lightbulb"></i></a>
+        </div>
+        <div class="social">
+            <a id="login" title="Se connecter" target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fa-solid fa-right-to-bracket"></i></i></a>
+            <a title="Non connecté" target="_blank"><i style="color: #e74c3c;" class="fa-solid fa-user-xmark"></i></i></a>
+            <a title="Paramètres" target="_blank" href="https://github.com/MurielParaire/Projet_JS"><i class="fa-solid fa-gear"></i></a>
+        </div>
+
+    </nav>
+    <!-- Contenu de la page-->
+    <main>
+        <!-- Section pour la page d'accueil et des capteurs -->
+        <section class="active" id="accueil">
+            <div class="anchor" id="onglets"></div>
+            <section class="onglets slideInUp">
+                <div class="space"></div>
+                <p class="title">Onglets des capteurs</p>
+                <!-- Liste de boîtes -->
+                <div class="list">
+                    <!-- Boîte -->
+                    <div class="ongletBox">
+                        <i style="color: #3281e9;" class="fa-solid fa-temperature-three-quarters"></i>
+                        <p class="subtitle">Capteur intérieur</p>
+                        <p>
+                            Based on the game Trackmania, I can create full customizable
+                            car-skin designs for e-sports teams and for customers in 2 weeks.
+                        </p>
+                    </div>
+                    <!-- Boîte -->
+                    <div class="ongletBox">
+                        <i style="color: #ffe600;" class="fa-solid fa-cloud-sun-rain"></i>
+                        <p class="subtitle">Capteur extérieur</p>
+                        <p>
+                            Based on the game Trackmania, I can create full customizable
+                            car-skin designs for e-sports teams and for customers in 2 weeks.
+                        </p>
+                    </div>
+                    <!-- Graphique Chart.js -->
+                    <div class="ongletBox2">
+                        <canvas id="myChart" width="400" height="230"></canvas>
+                    </div>
+                </div>
+            </section>
+            <!-- Bouton pour remonter en haut de la page -->
+            <a href="#" class="anchorBtn"><i class="far fa-arrow-alt-circle-up"></i></a>
+        </section>
+        <!-- Section pour la page de documentation -->
+        <section id="documentation">
+            <div class="anchor" id="services"></div>
+            <section class="services slideInUp">
+                <div class="space"></div>
+                <p class="title">Documentation du projet</p>
+                <!-- Liste de boîtes -->
+                <div class="list">
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #70ddff;"class="fa-solid fa-house-laptop"></i>
+                        <p class="subtitle">Présentation du projet</p>
+                        <p>
+                            HotHotHot est un site permettant un suivi météorologique
+                            grâce à 2 capteurs connectés à un serveur WebSocket.
+                        </p>
+                    </div>
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #ffa071;" class="fa-solid fa-user-group"></i>
+                        <p class="subtitle">Composition de l'équipe</p>
+                        <p>
+                            Notre groupe est composé de 3 personnes : <br>
+                            Bastien FERRARI, Muriel PARAIRE & Antony PINEL.
+                            
+                        </p>
+                    </div>
+                </div>
+                <p class="title">Outils utilisés</p>
+                <!-- Liste de boîtes -->
+                <div class="list">
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #3498db;" class="fa-solid fa-file-code"></i>
+                        <p class="subtitle">Visual Studio Code</p>
+                        <p>
+                            C'était la solution la plus pratique car il était déjà
+                            installé sur les ordinateurs de l'IUT et nous l'utilisions souvent pour coder nos projets.
+                        </p>
+                    </div>
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #34495e;" class="fa-brands fa-github"></i>
+                        <p class="subtitle">Github</p>
+                        <p>
+                            Pour regrouper les différentes parties de code de tous les membres de l'équipe,
+                            il était vraiment indispensable pour le versionnage du projet.
+                        </p>
+                    </div>
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #8e44ad;" class="fa-brands fa-discord"></i>
+                        <p class="subtitle">Discord</p>
+                        <p>
+                            Vu que tout le monde possède déjà ce réseau social, il a été d'une grande aide pour planifier
+                            nos objectifs et communiquer les différents changements en continu.
+                        </p>
+                    </div>
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: palevioletred;" class="fa-solid fa-database"></i>
+                        <p class="subtitle">AlwaysData</p>
+                        <p>
+                            Une partie du projet demandait à ce que le site soit hébergé sur Internet pour gérer toutes les
+                            fonctionnalités de la Progressive Web App ou du Service Worker.
+                        </p>
+                    </div>
+                </div>
+                <p class="title">Difficultés et solutions</p>
+                <!-- List de boîtes -->
+                <div class="list">
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #f1c40f;" class="fa-solid fa-triangle-exclamation"></i>
+                        <p class="subtitle">Problèmes rencontrés</p>
+                        <p>
+                            Based on the game Trackmania, I can create full customizable
+                            car-skin designs for e-sports teams and for customers in 2 weeks.
+                        </p>
+                    </div>
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #2ecc71;"class="fa-solid fa-comments"></i>
+                        <p class="subtitle">Solutions trouvées</p>
+                        <p>
+                            Based on the game Trackmania, I can create a whole graphic identity
+                            for tournaments, streamers who need twitch assets or personnal uses.
+                        </p>
+                    </div>
+                </div>
+                <p class="title">Conclusion du projet</p>
+                <!-- Liste de boîtes -->
+                <div class="list">
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #1abc9c;"class="fa-solid fa-folder-open"></i>
+                        <p class="subtitle">À l'avenir</p>
+                        <p>
+                            Based on the game Trackmania, I can create full customizable
+                            car-skin designs for e-sports teams and for customers in 2 weeks.
+                        </p>
+                    </div>
+                    <!-- Boîte -->
+                    <div class="serviceBox">
+                        <i style="color: #e74c3c;"class="fa-solid fa-ban"></i>
+                        <p class="subtitle">Ne pas refaire</p>
+                        <p>
+                            Based on the game Trackmania, I can create a whole graphic identity
+                            for tournaments, streamers who need twitch assets or personnal uses.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <a href="#" class="anchorBtn"><i class="far fa-arrow-alt-circle-up"></i></a>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <div class="logoFooter"></div>
+        <p>Projet JS - HotHotHot<br>Bastien FERRARI - Muriel PARAIRE - Antony PINEL</p>
+    </footer>
+</body>
+    <!-- Liens vers le JS -->
+    <script defer src="assets/js/theme.js"></script>
+    <script defer src="assets/js/section_switcher.js"></script>
+    <script src="assets/js/package/dist/chart.js"></script>
+    <script src="assets/js/main.js"></script>
+</html>
