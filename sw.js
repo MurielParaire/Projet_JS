@@ -1,14 +1,15 @@
 self.addEventListener('install', (e) => {
     e.waitUntil(
-        caches.open('my-custom-pwa').then((cache) => cache.addAll([
-            "/index.html",
-            "/assets/img/favicon.ico",  
-            "/assets/css/style.css",
-            "/assets/css/style_light.css",
-            "/assets/fonts/Inter-Bold.ttf",
-            "/assets/js/main.js",
-            "/assets/js/theme.js",
-            "/assets/js/section_switcher.js"
+        caches.open('PWA').then((cache) => cache.addAll([
+            "/Project/_JS/index.html",
+            "/Project/_JS/assets/img/favicon.ico",
+            "/Project/_JS/assets/img/pwa-icon.png",  
+            "/Project/_JS/assets/css/style.css",
+            "/Project/_JS/assets/css/style_light.css",
+            "/Project/_JS/assets/fonts/Inter-Bold.ttf",
+            "/Project/_JS/assets/js/main.js",
+            "/Project/_JS/assets/js/theme.js",
+            "/Project/_JS/assets/js/section_switcher.js"
         ])
     )
 )
