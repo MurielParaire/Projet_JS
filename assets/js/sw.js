@@ -11,7 +11,7 @@ var appShellFiles = [
   '/Projet_JS/assets/js/section_switcher.js'
 ];
 
-contentToCache = appShellFiles;
+contentToCache = appShellFiles.concat();
 
 self.addEventListener('install', function(e) {
   console.log('[Service Worker] Install');
