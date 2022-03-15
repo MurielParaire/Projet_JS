@@ -3,21 +3,12 @@
     "name": "Application Web Progressive ProjetJS",
     "short_name": "PJSW",
     "description": "Un projet effectué en groupe par Bastien Ferrari, Muriel Paraire et Antony Pinel.",
-    "icons": [
+    "start_url" : "https://murielparaire.github.io/Projet_JS/",
+    "icons" : [
         {
-          "src": "assets/img/pwa-icon.png",
-          "sizes": "32x32",
-          "type": "image/png"
-        }
-      ],
-    "related_applications": [
-        {
-            "platform": "web"
+        "src": "assets/img/pwa-icon.png",
+        "sizes" : "512x512"
         }
     ],
-    "start_url": "https://murielparaire.github.io/Projet_JS/",
-    "dir": "rtl",
-    "display": "fullscreen",
-    "theme_color": "#fafafa",
-    "background_color": "#fafafa"
+    "background_color" : "black"
 }
