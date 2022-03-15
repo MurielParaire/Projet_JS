@@ -5,7 +5,7 @@ var urlsToCache = [
   '/app.js',
   '/manifest.webmanifest',
   '/assets/img/favicon.ico',
-  '/assets/img/pwa-icon.png',  
+  '/assets/img/pwa-icon.png',
   '/assets/css/style.css',
   '/assets/css/style_light.css',
   '/assets/fonts/Inter-Bold.ttf',
