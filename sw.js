@@ -1,37 +1,23 @@
-var cacheName;
-var appShellFiles = [
-  '/Projet_JS/index.html',
-  '/Projet_JS/assets/img/favicon.ico',  
-  '/Projet_JS/assets/css/style.css',
-  '/Projet_JS/assets/css/style_light.css',
-  '/Projet_JS/assets/fonts/Inter-Bold.ttf',
-  '/Projet_JS/app.js',
-  '/Projet_JS/assets/js/main.js',
-  '/Projet_JS/assets/js/theme.js',
-  '/Projet_JS/assets/js/section_switcher.js'
-];
+self.addEventListener('install', (e) => {
+    e.waitUntil(
+        caches.open('my-custom-pwa').then((cache) => cache.addAll([
+            "/",
+            "/js/script.js",
+            "https://cdn.jsdelivr.net/npm/chart.js",
+            "/css/style.css",
+            "/css/chota.css",
+            "/manifest.webmanifest",
+            "icons/webIcon.png"
+        ])
+    )
+)
+})
 
-self.addEventListener('install', function(e) {
-  console.log('[Service Worker] Install');
-  e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      console.log('[Service Worker] Caching all: app shell and content');
-      return cache.addAll(appShellFiles);
-    })
-  );
-});
-
-self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request).then(function(r) {
-      console.log('[Service Worker] Fetching resource: '+e.request.url);
-      return r || fetch(e.request).then(function(response) {
-        return caches.open(cacheName).then(function(cache) {
-          console.log('[Service Worker] Caching new resource: '+e.request.url);
-          cache.put(e.request, response.clone());
-          return response;
-        });
-      });
-    })
-  );
+self.addEventListener('fetch', (e) => {
+    console.log(e);
+    e.respondWith(
+  
+      caches.match(e.request).then((response) => response || fetch(e.request)),
+  
+    );
 });
