@@ -15,7 +15,7 @@
             "type": "image/png"
         }
     ],
-    "start_url":"JavaScript/index.html",
+    "start_url": "/?source=index.html",
     "dir": "rtl",
     "display": "fullscreen",
     "theme_color": "#fafafa",
