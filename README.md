@@ -7,11 +7,10 @@
 
 ## Projet HotHotHot
 
-## Lien du site :
-https://murielparaire.github.io/Projet_JS/
-
 
   
+
+
 Travail mené par Bastien FERRARI, Muriel PARAIRE et Antony PINEL jusqu'au 4 **avril 2022**, 0h00 (donc le dimanche 3 au plus tard).
 
   
