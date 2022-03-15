@@ -2,7 +2,7 @@
               e.waitUntil(
                   caches.open('my-custom-pwa').then((cache) => cache.addAll([
                       "/",
-                      "/index.html",
+                      "/manifest.webmanifest",
                       "/assets/img/favicon.ico",
                       "/assets/img/pwa-icon.png",  
                       "/assets/css/style.css",
