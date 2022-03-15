@@ -1,4 +1,4 @@
-var cacheName = 'js13kPWA-v1';
+var cacheName = 'cache';
 var appShellFiles = [
   '/Projet_JS/index.html',
   '/Projet_JS/assets/img/favicon.ico',  
@@ -10,10 +10,7 @@ var appShellFiles = [
   '/Projet_JS/assets/js/theme.js',
   '/Projet_JS/assets/js/section_switcher.js'
 ];
-var gamesImages = [];
-for(var i=0; i<games.length; i++) {
-  gamesImages.push('data/img/'+games[i].slug+'.jpg');
-}
+
 var contentToCache = appShellFiles.concat(gamesImages);
 
 self.addEventListener('install', function(e) {
