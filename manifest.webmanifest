@@ -5,17 +5,17 @@
     "description": "Un projet effectué en groupe par Bastien Ferrari, Muriel Paraire et Antony Pinel.",
     "icons": [
         {
-            "src": "icons/icon-32.png",
-            "sizes": "32x32",
-            "type": "https://pngtree.com/so/wolf"
-        },
+          "src": "assets/img/pwa-icon.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        }
+      ],
+    "related_applications": [
         {
-            "src": "https://pngtree.com/so/wolf",
-            "sizes": "512x512",
-            "type": "image/png"
+            "platform": "web"
         }
     ],
-    "start_url":"JavaScript/index.html",
+    "start_url": "https://murielparaire.github.io/Projet_JS/",
     "dir": "rtl",
     "display": "fullscreen",
     "theme_color": "#fafafa",
