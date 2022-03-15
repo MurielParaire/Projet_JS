@@ -5,14 +5,14 @@
     "description": "Un projet effectué en groupe par Bastien Ferrari, Muriel Paraire et Antony Pinel.",
     "icons": [
         {
-            "src": "icons/icon-32.png",
+            "src": "assets/img/logowhite.png",
             "sizes": "32x32",
-            "type": "https://pngtree.com/so/wolf"
-        },
-        {
-            "src": "https://pngtree.com/so/wolf",
-            "sizes": "512x512",
             "type": "image/png"
+        },
+    ],
+    "related_applications": [
+        {
+            "platform": "web"
         }
     ],
     "start_url": "/?source=index.html",
