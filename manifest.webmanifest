@@ -15,7 +15,7 @@
             "platform": "web"
         }
     ],
-    "start_url": "/?source=index.html",
+    "start_url": "https://murielparaire.github.io/Projet_JS/",
     "dir": "rtl",
     "display": "fullscreen",
     "theme_color": "#fafafa",
