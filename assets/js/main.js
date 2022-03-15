@@ -1,3 +1,14 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+  .then((reg) => {
+    // registration worked
+    console.log('Enregistrement réussi');
+  }).catch((error) => {
+    // registration failed
+    console.log('Erreur : ' + error);
+  });
+}
+
 var socket = new WebSocket("wss://ws.hothothot.dog:9502");
     socket.onopen = function(event) {
         console.log("Connexion établie");
