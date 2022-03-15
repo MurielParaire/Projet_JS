@@ -1,6 +1,6 @@
 if('serviceWorker' in navigator)
 {
-    navigator.serviceWorker.register('/Projet_JS/sw.js') //a adapter à l'url du code
+    navigator.serviceWorker.register('./assets/js/sw.js') //a adapter à l'url du code
     .then(() => { console.log('Service Worker Registered');});
 }
 
