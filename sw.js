@@ -2,7 +2,7 @@ var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
   "/",
             "/index.html
-            "/app.js
+            "/app.js",
             "/manifest.webmanifest",
             "/assets/img/favicon.ico",
             "/assets/img/pwa-icon.png",  
