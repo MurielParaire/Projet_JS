@@ -1,6 +1,6 @@
             self.addEventListener('install', (e) => {
               e.waitUntil(
-                  caches.open('my-custom-pwa').then((cache) => cache.addAll([
+                  caches.open('PWA').then((cache) => cache.addAll([
                       "/",
                       "/manifest.webmanifest",
                       "/assets/img/favicon.ico",
