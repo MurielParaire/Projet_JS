@@ -11,8 +11,6 @@ var appShellFiles = [
   '/Projet_JS/assets/js/section_switcher.js'
 ];
 
-const contentToCache = appShellFiles;
-
 self.addEventListener('install', function(e) {
   console.log('[Service Worker] Install');
   e.waitUntil(
@@ -22,6 +20,11 @@ self.addEventListener('install', function(e) {
     })
   );
 });
+
+self.addEventListener('fetch', (e) => {
+  console.log(`[Service Worker] Fetched resource ${e.request.url}`);
+});
+
 
 self.addEventListener('fetch', function(e) {
   e.respondWith(
