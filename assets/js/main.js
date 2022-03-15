@@ -1,9 +1,3 @@
-if('serviceWorker' in navigator)
-{
-    navigator.serviceWorker.register('./assets/js/sw.js') //a adapter à l'url du code
-    .then(() => { console.log('Service Worker Registered');});
-}
-
 var socket = new WebSocket("wss://ws.hothothot.dog:9502");
     socket.onopen = function(event) {
         console.log("Connexion établie");
