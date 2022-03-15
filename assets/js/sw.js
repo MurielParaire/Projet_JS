@@ -1,4 +1,4 @@
-var cacheName = 'cache';
+var cacheName = 'Projet_JS';
 var appShellFiles = [
   '/Projet_JS/index.html',
   '/Projet_JS/assets/img/favicon.ico',  
