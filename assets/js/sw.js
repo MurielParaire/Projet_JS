@@ -1,53 +1,42 @@
-/*
-* Attention : CacheStorage != LocalStorage
-*
-* Il faut définir ici au moins un écouteur d'évément sur 'install' et
-* un écouteur d'événement sur 'fetch'
-*
-*/
+var cacheName = 'js13kPWA-v1';
+var appShellFiles = [
+  '/Projet_JS/index.html',
+  '/Projet_JS/assets/img/favicon.ico',  
+  '/Projet_JS/assets/css/style.css',
+  '/Projet_JS/assets/css/style_light.css',
+  '/Projet_JS/assets/fonts/Inter-Bold.ttf',
+  '/Projet_JS/assets/js/app.js',
+  '/Projet_JS/assets/js/main.js',
+  '/Projet_JS/assets/js/theme.js',
+  '/Projet_JS/assets/js/section_switcher.js'
+];
+var gamesImages = [];
+for(var i=0; i<games.length; i++) {
+  gamesImages.push('data/img/'+games[i].slug+'.jpg');
+}
+var contentToCache = appShellFiles.concat(gamesImages);
 
+self.addEventListener('install', function(e) {
+  console.log('[Service Worker] Install');
+  e.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      console.log('[Service Worker] Caching all: app shell and content');
+      return cache.addAll(contentToCache);
+    })
+  );
+});
 
-// Charger les ressources puis les mettre en cache
-
-self.addEventListener('install', (e) => {
-
-    e.waitUntil(
-  
-      caches.open('JavaScript/index.html').then((cache) => cache.addAll([
-  
-          "index.html",
-  
-          "JavaScript/main.js",
-  
-          "sw.js",
-
-          "documentation.html",
-
-          "styles/style.css",
-
-          "manifest.webmanifest",
-  
-  // ... ajouter les autres ressources à mettre en cache
-  
-      ])), // à adapter à l'URL du projet
-  
-    );
-  
-  });
-  
-  
-  // Stratégie "Cache, falling back to network"
-  
-  // => d'abord vérifier si la ressource n'est pas dans le cache pour la récupérer (offline)
-  
-  // sinon, récupérer depuis le serveur en ligne (online)
-  
-  self.addEventListener('fetch', (e) => {
-  
-    e.respondWith(
-  
-      caches.match(e.request).then((response) => response || fetch(e.request)),
-  
-    );
-  
-  });
+self.addEventListener('fetch', function(e) {
+  e.respondWith(
+    caches.match(e.request).then(function(r) {
+      console.log('[Service Worker] Fetching resource: '+e.request.url);
+      return r || fetch(e.request).then(function(response) {
+        return caches.open(cacheName).then(function(cache) {
+          console.log('[Service Worker] Caching new resource: '+e.request.url);
+          cache.put(e.request, response.clone());
+          return response;
+        });
+      });
+    })
+  );
+});
