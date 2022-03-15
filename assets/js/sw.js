@@ -11,8 +11,6 @@ var appShellFiles = [
   '/Projet_JS/assets/js/section_switcher.js'
 ];
 
-var contentToCache = appShellFiles.concat(gamesImages);
-
 self.addEventListener('install', function(e) {
   console.log('[Service Worker] Install');
   e.waitUntil(
