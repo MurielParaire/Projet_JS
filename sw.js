@@ -2,12 +2,14 @@ self.addEventListener('install', (e) => {
     e.waitUntil(
         caches.open('my-custom-pwa').then((cache) => cache.addAll([
             "/",
-            "/js/script.js",
-            "https://cdn.jsdelivr.net/npm/chart.js",
-            "/css/style.css",
-            "/css/chota.css",
-            "/manifest.webmanifest",
-            "icons/webIcon.png"
+            "/index.html",
+            "/assets/img/favicon.ico",  
+            "/assets/css/style.css",
+            "/assets/css/style_light.css",
+            "/assets/fonts/Inter-Bold.ttf",
+            "/assets/js/main.js",
+            "/assets/js/theme.js",
+            "/assets/js/section_switcher.js"
         ])
     )
 )
