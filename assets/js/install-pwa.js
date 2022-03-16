@@ -15,8 +15,3 @@ installApp.addEventListener('click', async () => {
         }
     }
 });
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    $('.install-app-btn-container').show();
-    deferredPrompt = e;
-});
