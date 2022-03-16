@@ -10,6 +10,7 @@ var urlsToCache = [
   "/Projet_JS/assets/fonts/Inter-Bold.ttf",
   "/Projet_JS/assets/js/main.js",
   "/Projet_JS/assets/js/theme.js",
+  "/Projet_JS/assets/js/install-pwa.js",
   "/Projet_JS/assets/js/section_switcher.js"
 ];
 
