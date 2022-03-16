@@ -10,5 +10,6 @@
         "sizes" : "512x512"
         }
     ],
+    "display" : "standalone",
     "background_color" : "black"
 }
