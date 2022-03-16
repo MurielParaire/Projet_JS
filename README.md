@@ -8,7 +8,7 @@
 ## Projet HotHotHot
 
 ## Lien du site :
-https://murielparaire.github.io/Projet_JS/
+https://murielparaire.github.io/ProjetJS/
 
 
   
