@@ -1,6 +1,6 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
-  "/",
+  "/Projet_JS",
   "/index.html",
   "/app.js",
   "/manifest.webmanifest",
