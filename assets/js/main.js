@@ -1,4 +1,3 @@
-/*
 var socket = new WebSocket("wss://ws.hothothot.dog:9502");
     socket.onopen = function(event) {
         console.log("Connexion établie");
@@ -57,32 +56,49 @@ var socket = new WebSocket("wss://ws.hothothot.dog:9502");
                     
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
+        type: "line",
         data: {
             datasets: [{
-                type: 'line',
-                label: 'CapteurExt',
+                label: 'CapteurExterieur',
+                borderColor: "#ffe600",
                 data: A_temperatures,
-                borderColor: '#5e4536'
+                fill: false,
+                lineTension: 0,
+                radius: 5
             }, {
-                type: 'line',
-                label: 'CapteurInt',
-                data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-                borderColor: '#a86b32'
+                label: 'CapteurInterieur',
+                borderColor: "#3281e9",
+                data: [45, 12, 28, 17, 33, 36, 40, 21, 32, 8, 11, 15, 19, 27, 39, 41, 44],
+                fill: false,
+                lineTension: 0,
+                radius: 5
             }],
             labels: ['00H', '01H', '02H', '03H', '04H', '05H', '06H', '07H', '08H', '09H', '10H', '11H', '12H', '13H', '14H', '15H', '16H', '17H', '18H', '19H', '20H', '21H', '22H', '23H']
 
         },
         options: {
+            layout: {
+                padding: 20,
+            },
+            scales: {
+                    y: [{
+                      title: {
+                        display: 'true',
+                        text: "Température"
+                      }
+                 }]
+            },    
             plugins: {
                 title: {
-                    text: "L'historique des capteurs",
+                    position: "top",
+                    text: "Historique des capteurs",
                     display: 'true',
-                    font: { weight: 'bold' }
-                }
+                    fontSize: 18,
+                    fontColor: "#111"
+                },          
             },
-            responsive: 'true'
-        }
-
+            responsive: 'true',
+        }    
     });
 
     // ---------------------------------------------------------------------------------------------------------------------------------
@@ -206,4 +222,3 @@ var socket = new WebSocket("wss://ws.hothothot.dog:9502");
         }, 2000)
 
     }());    
-*/
