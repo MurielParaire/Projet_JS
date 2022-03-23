@@ -77,17 +77,6 @@ var socket = new WebSocket("wss://ws.hothothot.dog:9502");
 
         },
         options: {
-            layout: {
-                padding: 20,
-            },
-            scales: {
-                    y: [{
-                      title: {
-                        display: 'true',
-                        text: "Température"
-                      }
-                 }]
-            },    
             plugins: {
                 title: {
                     position: "top",
