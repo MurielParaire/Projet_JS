@@ -2,25 +2,41 @@
 var TempIn = [];
 var TempEx = [];
 
-/*
+
 var socket = new WebSocket("wss://ws.hothothot.dog:9502");
-    socket.onopen = function(event) {
-        console.log("Connexion établie");
+socket.onopen = function(event) {
+    console.log("Connexion établie");
+    socket.send("coucou !");
+}
+//Envoi d'un message au serveur (obligatoire)
         
-        //Envoi d'un message au serveur (obligatoire)
-        socket.send("coucou !");
-        var intervaltemp = setInterval (function() {
-            // au retour...
-            socket.onmessage = function(event) {
-                var datas = document.getElementById("datas");
-                datas.innerHTML = event.data;
-                console.log(event);
-                var tempin = document.getElementById("tempin");
-                tempin.innerHTML = "AAAh";
-            }
-        }, 5000)
-    } 
-    socket.onerror = function(event) {*/
+    //var intervaltemp = setInterval (function() {
+    // au retour...
+        socket.onmessage = function(event) {
+            eventData = event.data;
+            console.log("wss");
+            console.log(eventData.HotHotHot);
+
+            //Capteur intérieur
+            var tempin = document.getElementById("tempin");
+            tempin.innerHTML = eventData.capteurs[0].Valeur;
+            UpdateIn(eventData.capteurs[0].Valeur);
+            var typein = document.getElementById("typein");
+            typein.innerHTML = eventData.capteurs[0].type;
+            
+
+            //Capteur extérieur
+            var tempex = document.getElementById("tempex");
+            tempin.innerHTML = eventData.capteurs[1].Valeur;
+            var typeex = document.getElementById("typeex");
+            typein.innerHTML = eventData.capteurs[1].type;
+            UpdateEx(eventData.capteurs[1].Valeur);
+
+            CalcTempMinMax();
+        }
+    //}, 5000)
+     
+    socket.onerror = function(event) {
         fetch('https://hothothot.dog/api/capteurs').then(function (response) {
             return response.json();
         }).then(function (data) {
@@ -48,11 +64,12 @@ var socket = new WebSocket("wss://ws.hothothot.dog:9502");
                 typein.innerHTML = eventData.capteurs[1].type;
                 UpdateEx(eventData.capteurs[1].Valeur);
 
+                CalcTempMinMax();
             },5000)
         }).catch(function (err) {
             console.warn('Something went wrong.', err);
         });
-    //}
+    }
 
     //fonction qui se charge de calculer le min et le max des capteurs intérieurs et extérieurs et de les afficher
     function CalcTempMinMax ()
@@ -94,7 +111,7 @@ var socket = new WebSocket("wss://ws.hothothot.dog:9502");
         tempmaxex.innerHTML = MaxEx;
     }
 
-UpdateIn(temp)
+function UpdateIn(temp)
 {
     TempIn.push(temp);
     //On s'interesse que aux 24 dernières heures donc on garde le tableau à cette grandeur
@@ -104,7 +121,7 @@ UpdateIn(temp)
     }
 }
 
-UpdateEx(temp)
+function UpdateEx(temp)
 {
     TempEx.push(temp);
     TempEx.push(temp);

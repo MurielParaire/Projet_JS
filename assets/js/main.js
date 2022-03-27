@@ -1,3 +1,4 @@
+/* 
     var A_temperatures = [];
                     
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -97,7 +98,7 @@
         // https://developer.mozilla.org/fr/docs/Web/API/Node
         // https://developer.mozilla.org/fr/docs/Web/API/Element
         var p_temperature = document.getElementById('p_temperature');
-        //var section = p_temperature.parentNode;
+        var section = p_temperature.parentNode;
         var span_temperature = document.getElementById('span_temperature');
         var i = 0;
         // https://developer.mozilla.org/en-US/docs/Web/API/setInterval
@@ -157,3 +158,4 @@
         }, 2000)
 
     }());    
+*/
