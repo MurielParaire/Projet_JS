@@ -1,56 +1,72 @@
+CalcTempMinMax(1000,-1000,10000,-10000);
+
+/*
 var socket = new WebSocket("wss://ws.hothothot.dog:9502");
     socket.onopen = function(event) {
         console.log("Connexion établie");
-
-        //On indique sur notre page web que la connexion est établie
-        let label = document.getElementById("status");
-        label.innerHTML = "Connexion établie";
-
+        
+        //Envoi d'un message au serveur (obligatoire)
+        socket.send("coucou !");
         var intervaltemp = setInterval (function() {
-            //Envoi d'un message au serveur (obligatoire)
-            socket.send("coucou !");
-
             // au retour...
             socket.onmessage = function(event) {
                 var datas = document.getElementById("datas");
                 datas.innerHTML = event.data;
                 console.log(event);
+                var tempin = document.getElementById("tempin");
+                tempin.innerHTML = "AAAh";
             }
         }, 5000)
-
     } 
-    socket.onerror = function(event) {
+    socket.onerror = function(event) {*/
         fetch('https://hothothot.dog/api/capteurs').then(function (response) {
             return response.json();
         }).then(function (data) {
             console.log(data);
 
-            //On indique sur notre page web que la connexion est établie
-            let label = document.getElementById("status");
-            label.innerHTML = "Connexion établie";
+            console.log("allo");
 
             var eventData = data;
 
             var intervaltemp = setInterval (function() {
                 console.log(eventData.HotHotHot);
 
-                console.log(eventData.capteurs[0].type);
-                console.log(eventData.capteurs[0].Nom);
-                console.log(eventData.capteurs[0].Valeur);
-                console.log(eventData.capteurs[0].Timestamp);
+                //Capteur intérieur
+                var tempin = document.getElementById("tempin");
+                tempin.innerHTML = eventData.capteurs[0].Valeur;
+                var typein = document.getElementById("typein");
+                typein.innerHTML = eventData.capteurs[0].type;
 
-                console.log(eventData.capteurs[1].type);
-                console.log(eventData.capteurs[1].Nom);
-                console.log(eventData.capteurs[1].Valeur);
-                console.log(eventData.capteurs[1].Timestamp);
 
-                var datas = document.getElementById("datas");
-                datas.innerHTML = eventData.capteur[0].Valeur;
+                //Capteur extérieur
+                var tempex = document.getElementById("tempex");
+                tempin.innerHTML = eventData.capteurs[1].Valeur;
+                var typeex = document.getElementById("typeex");
+                typein.innerHTML = eventData.capteurs[1].type;
+
             },5000)
         }).catch(function (err) {
             console.warn('Something went wrong.', err);
         });
+    //}
+
+    //fonction qui se charge de calculer le min et le max des capteurs intérieurs et extérieurs et de les afficher
+    function CalcTempMinMax (minin, maxin, minex, maxex)
+    {
+
+        //Capteur intérieur HTML
+        var tempminin = document.getElementById("tempminin");
+        tempminin.innerHTML = MinInt;
+        var tempmaxin = document.getElementById("tempmaxin");
+        tempmaxin.innerHTML = MaxInt;
+
+        //Capteur intérieur HTML
+        var tempminex = document.getElementById("tempminex");
+        tempminex.innerHTML = MinInt;
+        var tempmaxex = document.getElementById("tempmaxex");
+        tempmaxex.innerHTML = MaxInt;
     }
+
 
     var A_temperatures = [];
                     
