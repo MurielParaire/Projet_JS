@@ -2,7 +2,7 @@
 var TempIn = [];
 var TempEx = [];
 
-
+/*
 var socket = new WebSocket("wss://ws.hothothot.dog:9502");
 socket.onopen = function(event) {
     console.log("Connexion établie");
@@ -13,40 +13,14 @@ socket.onopen = function(event) {
     //var intervaltemp = setInterval (function() {
     // au retour...
         socket.onmessage = function(event) {
-            eventData = event.data;
-            console.log("wss");
-            console.log(eventData.HotHotHot);
-
-            //Capteur intérieur
-            var tempin = document.getElementById("tempin");
-            tempin.innerHTML = eventData.capteurs[0].Valeur;
-            UpdateIn(eventData.capteurs[0].Valeur);
-            var typein = document.getElementById("typein");
-            typein.innerHTML = eventData.capteurs[0].type;
-            
-
-            //Capteur extérieur
-            var tempex = document.getElementById("tempex");
-            tempin.innerHTML = eventData.capteurs[1].Valeur;
-            var typeex = document.getElementById("typeex");
-            typein.innerHTML = eventData.capteurs[1].type;
-            UpdateEx(eventData.capteurs[1].Valeur);
-
-            CalcTempMinMax();
-        }
-    //}, 5000)
-     
-    socket.onerror = function(event) {
-        fetch('https://hothothot.dog/api/capteurs').then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(data);
-
-            console.log("allo");
-
-            var eventData = data;
-
-            var intervaltemp = setInterval (function() {
+            if (event == null || event == undefined)
+            {
+                console.log("Pas de retour du serveur.");
+            }
+            else 
+            {
+                eventData = event.data;
+                console.log("wss");
                 console.log(eventData.HotHotHot);
 
                 //Capteur intérieur
@@ -64,12 +38,46 @@ socket.onopen = function(event) {
                 typein.innerHTML = eventData.capteurs[1].type;
                 UpdateEx(eventData.capteurs[1].Valeur);
 
+                CalcTempMinMax();  
+            }
+            
+        }
+    //}, 5000) */
+     
+    //socket.onerror = function(event) {
+        fetch('https://hothothot.dog/api/capteurs').then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data);
+
+            console.log("allo");
+
+            var eventData = data;
+
+            var intervaltemp = setInterval (function() {
+                console.log(eventData.HotHotHot);
+
+                //Capteur intérieur
+                var tempin = document.getElementById("tempin");
+                tempin.innerHTML = eventData.capteurs[0].Valeur + " °C";
+                UpdateIn(eventData.capteurs[0].Valeur);
+                var typein = document.getElementById("typein");
+                typein.innerHTML = eventData.capteurs[0].type;
+                
+
+                //Capteur extérieur
+                var tempex = document.getElementById("tempex");
+                tempex.innerHTML = eventData.capteurs[1].Valeur + " °C";
+                var typeex = document.getElementById("typeex");
+                typeex.innerHTML = eventData.capteurs[1].type;
+                UpdateEx(eventData.capteurs[1].Valeur);
+
                 CalcTempMinMax();
             },5000)
         }).catch(function (err) {
             console.warn('Something went wrong.', err);
         });
-    }
+    //}
 
     //fonction qui se charge de calculer le min et le max des capteurs intérieurs et extérieurs et de les afficher
     function CalcTempMinMax ()
@@ -85,7 +93,7 @@ socket.onopen = function(event) {
         {
             if (TempIn[index] < MinInt)
                 MinInt = TempIn[index];
-            if (TempIn[index] < MaxInt)
+            if (TempIn[index] > MaxInt)
                 MaxInt = TempIn[index];
         }
 
@@ -94,21 +102,21 @@ socket.onopen = function(event) {
         {
             if (TempEx[index] < MinEx)
                 MinEx = TempEx[index];
-            if (TempEx[index] < MaxEx)
+            if (TempEx[index] > MaxEx)
                 MaxEx = TempEx[index];
         }
 
         //Capteur intérieur HTML
         var tempminin = document.getElementById("tempminin");
-        tempminin.innerHTML = MinInt;
+        tempminin.innerHTML = MinInt + " °C";
         var tempmaxin = document.getElementById("tempmaxin");
-        tempmaxin.innerHTML = MaxInt;
+        tempmaxin.innerHTML = MaxInt + " °C";
 
         //Capteur extérieur HTML
         var tempminex = document.getElementById("tempminex");
-        tempminex.innerHTML = MinEx;
+        tempminex.innerHTML = MinEx + " °C";
         var tempmaxex = document.getElementById("tempmaxex");
-        tempmaxex.innerHTML = MaxEx;
+        tempmaxex.innerHTML = MaxEx + " °C";
     }
 
 function UpdateIn(temp)
