@@ -73,6 +73,7 @@ socket.onopen = function(event) {
                 UpdateEx(eventData.capteurs[1].Valeur);
 
                 CalcTempMinMax();
+                alerter(eventData.capteurs[1].Valeur, eventData.capteurs[0].Valeur);
             },5000)
         }).catch(function (err) {
             console.warn('Something went wrong.', err);
@@ -125,7 +126,7 @@ function UpdateIn(temp)
     //On s'interesse que aux 24 dernières heures donc on garde le tableau à cette grandeur
     if (TempIn.length > 24)
     {
-        TempInMax.pop();
+        TempIn.pop();
     }
 }
 
@@ -138,4 +139,48 @@ function UpdateEx(temp)
     {
         TempEx.pop();
     }
+}
+
+function alerter (msg)
+{
+    new Notification ("HotHotHot", {
+        body: msg,
+        icon: "../img/pwa-icon.png"
+    });
+}
+
+function Alerte (tempext, tempint)
+{
+    if (tempex > 20)
+    {
+        alerter("Hot Hot Hot !");
+    }
+    else if (tempex < 0)
+    {
+        alerter("Banquise en vue !");
+    }
+
+    if (tempint > 10)
+    {
+        if (tempint > 15)
+        {
+            alerter("Appelez les pompiers ou arrêtez votre barbecue !");
+        }
+        else
+        {
+            alerter("Baissez le chauffage !");
+        }
+    }
+    else if (tempint < 12)
+    {
+        if (tempint < 0)
+        {
+            alerter("Canalisation gelées, appelez SOS plombier et mettez un bonnet !");
+        }
+        else
+        {
+            alerter("Montez le chauffage ou mettez un gros pull !");
+        }
+    }
+
 }
