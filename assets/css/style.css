@@ -338,15 +338,6 @@ nav {
             font-size: 15px;
             color: #f0f6fc;
         }
-    
-    .logoFooter {
-        background-image: url(../img/logowhite.png);
-        background-size: cover;
-        background-position: center;
-        width: 165px;
-        height: 35px;
-        margin: 0 22px;
-    }
 
     /* DOM */
 
