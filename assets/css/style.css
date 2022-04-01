@@ -259,6 +259,46 @@ nav {
         height:auto
       }
 
+      .container-flex {
+        width: 320px;
+        height: 200px;
+        margin: 45px;
+        padding: 35px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        background-color: #191919;
+        box-shadow: 0 1px 8px rgba(0,0,0,.1);
+    }
+    
+        .container-flex:hover {
+            box-shadow: 0 0 0 2px #f0f6fc;
+        }
+    
+        .container-flex i {
+            font-size: 60px;
+        }
+    
+        .container-flex p {
+            font-size: 13px;
+            line-height: 26px;
+            color: #f0f6fc;
+        }
+    
+        .toggle-btn {
+            font-size: 13px;
+            line-height: 26px;
+            color: #f0f6fc;
+        }
+
+        .container-flex .subtitle {
+            font-size: 32px;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            line-height: 34px;
+        }
+
 /* Services */
 
 .space {
@@ -434,4 +474,3 @@ nav {
             margin: 0px 15px;
         }
     }
-    
