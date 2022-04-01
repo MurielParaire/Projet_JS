@@ -85,11 +85,14 @@
                         </p>
                     </div>
                     <!--Button pour changer entre le fetch et udes valeurs aléatoires-->
-                    <div class="ongletBox">
-                        <button class="buttonswitch" tye="button">
-                            Switch entre fetch et des valeurs aléatoires
-                        </button>
-                    </div>
+                    <div class="container-flex">
+                        <i style="color: #ff2d55;" class="fa-solid fa-repeat"></i>
+                        <p class="subtitle">Changer de mode</p>
+                        <label class="toggle-btn">Utiliser des valeurs aléatoires au lieu du fetch | 
+                          <input type="checkbox" id="buttonValeurs">
+                          <span class="btn"></span>
+                        </label>
+                      </div>
                     <!-- Graphique Chart.js -->
                     <div class="ongletBox2">
                         <canvas id="myChart" width="400" height="230"></canvas>
