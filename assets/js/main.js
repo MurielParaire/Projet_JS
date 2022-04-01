@@ -1,3 +1,4 @@
+   /*
     var A_temperatures = [];
                     
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -157,3 +158,4 @@
         }, 2000)
 
     }());    
+*/
