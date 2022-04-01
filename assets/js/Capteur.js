@@ -1,10 +1,24 @@
 
 var TempIn = [];
 var TempEx = [];
-var valeursrandom = true;
+var valeursrandom = false;
 
 function getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
+}
+
+function checkCheckbox()
+{
+    var checkBox = document.querySelector('#buttonValeurs');
+    if (checkBox.checked)
+    {
+        valeursrandom = true;
+    }
+    else
+    {
+        valeursrandom = false;
+    }
+    console.log("val" + valeursrandom);
 }
 /*
 if (document.getElementById('buttonswitch').clicked == true)
@@ -29,14 +43,14 @@ function GetValeursCapteurs()
             tempin.innerHTML = tabValRandom[0];
             UpdateIn(tabValRandom[0]);
             var typein = document.getElementById("typein");
-            typein.innerHTML = tabValRandom[0];
+            typein.innerHTML = "Simulateur";
                         
 
             //Capteur extérieur
             var tempex = document.getElementById("tempex");
-            tempin.innerHTML = tabValRandom[1];
+            tempex.innerHTML = tabValRandom[1];
             var typeex = document.getElementById("typeex");
-            typein.innerHTML = tabValRandom[1];
+            typeex.innerHTML = "Simulateur";
             UpdateEx(tabValRandom[1]);
 
             CalcTempMinMax();
@@ -49,9 +63,11 @@ function GetValeursCapteurs()
             tabValRandom.shift();
             tabValRandom.push(getRandomArbitrary(-5, 55));
             tabValRandom.push(getRandomArbitrary(-5, 40));
+            checkCheckbox();
             if (valeursrandom == false)
             {
-                clearInterval();
+                clearInterval(intervaltemp);
+                GetValeursCapteurs();
             }
             }, 5000)
             
@@ -99,6 +115,12 @@ function GetValeursCapteurs()
                         updateTabHours(compteur);
                         chart.update();
                         compteur = compteur + 1; 
+                        checkCheckbox();
+                        if (valeursrandom == true)
+                        {
+                            clearInterval(intervaltemp);
+                            GetValeursCapteurs();
+                        }
                     }
                     
                 }
@@ -135,7 +157,12 @@ function GetValeursCapteurs()
                         updateTabHours(compteur);
                         chart.update();
                         compteur = compteur + 1;
-                        
+                        checkCheckbox();
+                        if (valeursrandom == true)
+                        {
+                            clearInterval(intervaltemp);
+                            GetValeursCapteurs();
+                        }
                     },5000)
                 }).catch(function (err) {
                     console.warn('Something went wrong.', err);
@@ -149,8 +176,8 @@ function GetValeursCapteurs()
     {
         var MinInt = CalcMinInt();
         var MaxInt = CalcMaxInt();
-        var MinEx = CalcMaxEx();
-        var MaxEx = CalcMinEx();
+        var MinEx = CalcMinEx();
+        var MaxEx = CalcMaxEx();
         
         //Capteur intérieur HTML
         var tempminin = document.getElementById("tempminin");
@@ -235,6 +262,10 @@ function UpdateEx(temp)
 
 function alerter (msg)
 {
+    if (Notification.permission !== "granted") 
+    { 
+        return; 
+    }
     new Notification ("HotHotHot", {
         body: msg,
         icon: "../img/logowhite.png"
